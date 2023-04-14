@@ -1,11 +1,14 @@
 import dataSource from "./dataSource";
-import { ApolloServer, gql } from "apollo-server";
+import { ApolloServer } from "apollo-server";
 import { buildSchema } from "type-graphql";
 import { WildersResolver } from "./resolvers/WildersResolver";
+import { SkillResolver } from "./resolvers/SkillResolver";
 
 const start = async (): Promise<void> => {
   await dataSource.initialize();
-  const schema = await buildSchema({ resolvers: [WildersResolver] });
+  const schema = await buildSchema({
+    resolvers: [WildersResolver, SkillResolver],
+  });
   const server = new ApolloServer({
     schema,
   });

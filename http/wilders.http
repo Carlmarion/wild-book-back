@@ -1,5 +1,7 @@
 ### List all Wilders
 GET http://localhost:5000/api/wilders
+ 
+
 
 ### Get a Wilder by ID
 
@@ -11,8 +13,11 @@ POST http://localhost:5000/api/wilders
 Content-Type: application/json
 
 {
-    "name": "René Girard",
-    "city": "Paris"
+"query": "mutation createWilder($name: String!, $city: String!) { addWilder(name: $name, city: $city) { id name city } }",
+"variables": {
+"name": "René Girard",
+"city": "Paris"
+}
 }
 
 ### Update a Wilder
